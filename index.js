@@ -10,6 +10,7 @@ const port = process.env.PORT || 5001;
 app.use(cors());
 app.use(express.json());
 
+//connect to database
 const uri = process.env.ATLAS_URI;
 mongoose.connect(uri, {
   useNewUrlParser: true,
