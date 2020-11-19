@@ -14,10 +14,26 @@ export default class ExerciseList extends Component {
   }
 
   componentDidMount() {
-    axios.get("http://localhost:5001/exercises/").then((response) => {
-      this.setState({ exercises: response.data });
+    axios
+      .get("http://localhost:5001/exercises/")
+      .then((response) => {
+        this.setState({ exercises: response.data });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+
+  deleteExercise(id) {
+    axios
+      .delete("http://localhost:5001/exercises" + id)
+      .then((res) => console.log(res.data));
+
+    this.setState({
+      exercises: this.state.exercises.filter((el) => el._id !== id),
     });
   }
+
   render() {
     return (
       <div>
